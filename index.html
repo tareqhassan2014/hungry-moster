@@ -43,9 +43,9 @@
         </nav>
     </div>
 
-    <div class="container border">
+    <div class="container">
         <div class="meal-wrapper text-center">
-            <div class="meal-search border">
+            <div class="meal-search">
                 <h2 class="title">Find Meal For Your Ingredient</h2>
                 <blockquote>
                     “Pull up a chair. Take a taste. Come join us. Life is so endlessly delicious.”<br>
@@ -57,46 +57,16 @@
                 </div>
             </div>
             <div class="meal-result">
-                <h2 class="title">Your Search Result :</h2>
-                <div id="meal">
-                    <!-- meal item start -->
-                    <div class="meal-item">
-                        <div class="meal-image">
-                            <img src="./photo/meal-image.png" alt="">
-                        </div>
-                        <div class="meal-r">
-                            <h3>Egg fry</h3>
-                            <a class="recipe-btn" href="">get recipe</a>
-                        </div>
-                    </div>
-                    <!-- end of meal item -->
-                </div>
+                <div id="meal"></div>
             </div>
-            <div class="meal-details">
-                <!-- recipe close button  -->
-                <button id="recipe-close-btn" class="btn recipe-close-btn"> <i class="fas fa-times"></i> </button>
-                <!-- meal content  -->
-                <div class="meal-details-content">
-                    <h2 class="recipe-titel">Meal Name Here</h2>
-                    <p class="recipe-category">Catagory Here</p>
-                    <div class="recipe-instruct">
-                        <h3>Instructions :</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quam aspernatur nisi beatae adipisci odio facere libero doloremque quas voluptatum, ad quod perferendis, repudiandae quaerat, omnis repellendus dolorem praesentium! Dolorem!</p>
-                    </div>
-                    <div class="recipe-image">
-                        <img src="./photo/logo.png" alt="">
-                    </div>
-                    <div class="recipe-link">
-                        <a href="#">Watck Video</a>
-                    </div>
-                </div>
-            </div>
+            <div id="meal-details"></div>
+
+
         </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
-    <script src="./app.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
+        <script src="./app.js"></script>
 </body>
 
 </html>
