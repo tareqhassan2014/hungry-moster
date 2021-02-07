@@ -30,3 +30,7 @@ margin: 0 auto;
 .not-found{
     color: #F06C4E;
 }
+.meal-image img{
+    width: 400px;
+    height: 400px;
+}
