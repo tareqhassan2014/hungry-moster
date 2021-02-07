@@ -26,3 +26,6 @@ border-radius: 6px;
 .meal-search-box input:focus{
     outline: 0px;
 } */
+.not-found{
+    color: #F06C4E;
+}
