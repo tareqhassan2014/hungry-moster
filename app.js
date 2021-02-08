@@ -1,72 +1,51 @@
-const searchBtn = document.getElementById('search-btn');
 const mealList = document.getElementById('meal');
-const mealDetailsContent = document.querySelector('meal-details-content');
+const searchResult = document.getElementById('searchResult');
 const mealDetails = document.getElementById('meal-details');
 
-// event listener 
 
-searchBtn.addEventListener('click', getMealList);
-mealList.addEventListener('click', getMealDetails);
-// get meal list that get with the Ingedients
-
-function getMealList() {
-    let searchInput = document.getElementById('search-input');
-    let searchInputText = searchInput.value.trim();
-    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInputText}`)
-        .then(Response => Response.json())
+function searchMeal() {
+    const searchText = document.getElementById('searchText').value.trim();
+    const url = `https://www.themealdb.com/api/json/v1/1/search.php?f=${searchText}`
+    fetch(url)
+        .then(res => res.json())
         .then(data => {
             let html = "";
-            if (data.meals) {
-                data.meals.forEach(meal => {
-                    html += `
-                    <h2 class="title">Your Search Result :</h2>
-                <div data-id="${meal.idMeal}" class="meal-item">
+            data.meals.forEach(meal => {
+                html += `
+                <div data-id="${meal.idMeal}" class="meal-item col-6 col-md-3 my-3" onclick="mealDetail('${meal.idMeal}')">
                 <div class="meal-image">
                     <img src="${meal.strMealThumb}" alt="">
                 </div>
-                <div class="meal-r">
+                <div class="meal-name py-4">
                     <h3>${meal.strMeal}</h3>
-                    <a class="recipe-btn btn btn-warning" href="">get recipe</a>
                 </div>
             </div>
-                `
-                });
-            } else {
-                html = "<h2 class='not-found'>Sorry we don't find any Meal!</h2>";
-            }
+            `
+            });
             mealList.innerHTML = html;
-            
-        });
+        })
+        .catch(error => (mealList.innerHTML = "<h3 class='text-danger'>Meal not found!</h3>"));
+    searchResult.style.display = 'block';
 }
 
-//get recipe for the meal
-function getMealDetails(e) {
-    e.preventDefault();
-    if (e.target.classList.contains('recipe-btn')) {
-        let mealItem = e.target.parentElement.parentElement;
-        fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealItem.dataset.id}`)
-            .then(Response => Response.json())
-            .then(data => mealRecipeModel(data.meals));
-    }
-}
-
-//creat a model
-function mealRecipeModel(meal) {
-    meal = meal[0];
-    html = `
-    <h2 class="recipe-titel">${meal.strMeal}</h2>
-    <p class="recipe-category">${meal.strCategory}</p>
-    <div class="recipe-instruct">
-        <h3>Instructions :</h3>
-        <p>${meal.strInstructions}</p>
-    </div>
-    <div class="recipe-image">
-        <img src="${meal.strMealThumb}" alt="">
-    </div>
-    <div class="recipe-link">
-        <a href="${meal.strSource}">Watck Video</a>
-    </div>
-    `;
-    mealDetails.innerHTML = html;
-    mealList.style.display = "none";
+function mealDetail(id) {
+    const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            meal = data.meals[0];
+            let html = '';
+            html += `
+                <div data-id="${meal.idMeal}" class="col-6 my-3">
+                <div class="meal-image">
+                    <img src="${meal.strMealThumb}" alt="">
+                </div>
+                <div class="meal-name py-4">
+                    <h3>${meal.strMeal}</h3>
+                </div>
+            </div>
+            `
+            mealDetails.innerHTML = html;
+            mealList.style.display = "none";
+        })
 }
