@@ -34,14 +34,24 @@ function mealDetail(id) {
         .then(res => res.json())
         .then(data => {
             meal = data.meals[0];
+            console.log(data.meals[0]);
             let html = '';
             html += `
-                <div data-id="${meal.idMeal}" class="col-6 my-3">
+            <div data-id="${meal.idMeal}" class="col-6 my-3 meal-item">
                 <div class="meal-image">
                     <img src="${meal.strMealThumb}" alt="">
                 </div>
                 <div class="meal-name py-4">
-                    <h3>${meal.strMeal}</h3>
+                    <h3 class="py-4">${meal.strMeal}</h3>
+                    <div class="text-start">
+                        <p><i class="fas text-danger fa-clipboard-check"></i> Origin: ${meal.strArea}</p>
+                        <p><i class="fas text-danger fa-clipboard-check"></i> Category: ${meal.strCategory}</p>
+                        <p><i class="fas text-danger fa-clipboard-check"></i> Ingredient: ${meal.strIngredient1}</p>
+                        <p><i class="fas text-danger fa-clipboard-check"></i> Ingredient: ${meal.strIngredient2}</p>
+                        <p><i class="fas text-danger fa-clipboard-check"></i> Ingredient: ${meal.strIngredient3}</p>
+                        <p><i class="fas text-danger fa-clipboard-check"></i> Ingredient: ${meal.strIngredient4}</p>
+                        <p><i class="fas text-danger fa-clipboard-check"></i> Ingredient: ${meal.strIngredient5}</p>
+                    </div>
                 </div>
             </div>
             `
